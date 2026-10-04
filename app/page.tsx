@@ -1,69 +1,216 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import styles from "./page.module.css";
+
+type Resource = {
+  title: string;
+  url: string;
+};
+
+type Day = {
+  day: number;
+  title: string;
+  resources: Resource[];
+};
+
+type Week = {
+  week: number;
+  title: string;
+  description: string;
+  days: Day[];
+};
+
+const initialWeeks: Week[] = [
+  {
+    week: 1,
+    title: "Product Management Fundamentals",
+    description: "Build a strong foundation in product thinking and understand the role of a product manager.",
+    days: [
+      { day: 1, title: "Introduction to Product Management", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 2, title: "Understanding Users & Problems", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 3, title: "Problem Framing", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 4, title: "Product Thinking", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 5, title: "Putting the Fundamentals Together", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+    ],
+  },
+  {
+    week: 2,
+    title: "Building Products",
+    description: "Learn how product teams move from a problem to a solution and make decisions along the way.",
+    days: [
+      { day: 1, title: "User Research", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 2, title: "Ideation & Solutions", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 3, title: "Prioritisation", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 4, title: "Product Strategy", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 5, title: "Metrics & Measuring Success", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+    ],
+  },
+  {
+    week: 3,
+    title: "Case Preparation",
+    description: "Bring the concepts together and practise approaching product problems in a structured way.",
+    days: [
+      { day: 1, title: "Product Case Basics", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 2, title: "Breaking Down a Case", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 3, title: "Making Trade-offs", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 4, title: "Communicating Your Solution", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+      { day: 5, title: "Final Preparation", resources: [{ title: "Resource 01", url: "#" }, { title: "Resource 02", url: "#" }, { title: "Resource 03", url: "#" }] },
+    ],
+  },
+];
+
+export default function ProductManagementPage() {
+  const [weeks, setWeeks] = useState(initialWeeks);
+
+  function addResource(weekIndex: number, dayIndex: number) {
+    setWeeks((current) =>
+      current.map((week, wi) =>
+        wi !== weekIndex
+          ? week
+          : {
+              ...week,
+              days: week.days.map((day, di) =>
+                di !== dayIndex
+                  ? day
+                  : {
+                      ...day,
+                      resources: [
+                        ...day.resources,
+                        {
+                          title: `Resource ${String(day.resources.length + 1).padStart(2, "0")}`,
+                          url: "#",
+                        },
+                      ],
+                    }
+              ),
+            }
+      )
+    );
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <div className={styles.headerInner}>
+          <a href="#" className={styles.brand}>
+            <span className={styles.logoPlaceholder}>CELESTA</span>
+            <span>CELESTA</span>
+          </a>
+
+          <nav className={styles.nav}>
+            <a href="#learning">Learning</a>
+            <a href="#about">About</a>
+          </nav>
+        </div>
+      </header>
+
+      <section className={styles.hero}>
+        <div className={styles.container}>
+          <p className={`${styles.eyebrow} race`}>PRODUCT MANAGEMENT WING · FINANCE CLUB · IIT PATNA</p>
+          <h1 className={`${styles.title} stateWide`}>
+            Product Management
+            <br />
+            <span>Learning Journey</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className={styles.intro}>
+            A guided collection of resources to help you build your understanding
+            of product management and prepare for the journey ahead.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section id="learning" className={styles.learning}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={`${styles.eyebrow} race`}>LEARNING PLAN</p>
+              <h2 className={`${styles.sectionTitle} stateWide`}>Start Learning</h2>
+            </div>
+            <p className={styles.sectionDescription}>
+              Work through each day in order. Open the resources, take notes,
+              and come back whenever you need to revise.
+            </p>
+          </div>
+
+          <div className={styles.weeks}>
+            {weeks.map((week, weekIndex) => (
+              <section className={styles.week} key={week.week}>
+                <div className={styles.weekHeader}>
+                  <div className={styles.weekNumber}>WEEK {String(week.week).padStart(2, "0")}</div>
+                  <div>
+                    <h3 className={`${styles.weekTitle} stateWide`}>{week.title}</h3>
+                    <p className={styles.weekDescription}>{week.description}</p>
+                  </div>
+                </div>
+
+                <div className={styles.days}>
+                  {week.days.map((day, dayIndex) => (
+                    <article className={styles.day} key={day.day}>
+                      <div className={styles.dayHeader}>
+                        <span className={`${styles.dayNumber} race`}>
+                          DAY {String(day.day).padStart(2, "0")}
+                        </span>
+                        <h4>{day.title}</h4>
+                      </div>
+
+                      <div className={styles.resources}>
+                        {day.resources.map((resource, resourceIndex) => (
+                          <a
+                            className={styles.resource}
+                            href={resource.url}
+                            key={`${resource.title}-${resourceIndex}`}
+                            target={resource.url !== "#" ? "_blank" : undefined}
+                            rel={resource.url !== "#" ? "noreferrer" : undefined}
+                          >
+                            <span>{resource.title}</span>
+                            <span className={styles.arrow}>↗</span>
+                          </a>
+                        ))}
+
+                        <button
+                          className={styles.addResource}
+                          type="button"
+                          onClick={() => addResource(weekIndex, dayIndex)}
+                        >
+                          + Add another resource
+                        </button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section id="about" className={styles.about}>
+        <div className={styles.container}>
+          <div className={styles.aboutBox}>
+            <div>
+              <p className={`${styles.eyebrow} race`}>ABOUT</p>
+              <h2 className={`${styles.aboutTitle} stateWide`}>
+                Learn. Apply.
+                <br />
+                Build.
+              </h2>
+            </div>
+            <p className={styles.aboutText}>
+              This learning hub is maintained by the Product Management Wing of
+              Finance Club, IIT Patna. Resources can be updated as the programme
+              progresses.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer className={styles.footer}>
+        <div className={styles.container}>
+          <span>CELESTA · IIT PATNA</span>
+          <span>FINANCE CLUB · PRODUCT MANAGEMENT WING</span>
+        </div>
+      </footer>
+    </main>
   );
 }

@@ -1,0 +1,386 @@
+@font-face {
+  font-family: "Race Sport";
+  src: url("/fonts/Race.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "State Wide";
+  src: url("/fonts/State Wide/StateWide-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Valorax";
+  src: url("/fonts/Valorax-lg25V.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.page {
+  --bg: #050808;
+  --surface: #0a1111;
+  --surface-light: #0e1717;
+  --text: #f3f6f5;
+  --muted: #9ba8a6;
+  --muted-2: #667472;
+  --line: rgba(255, 255, 255, 0.09);
+  --accent: #19d8ca;
+  --accent-soft: rgba(25, 216, 202, 0.08);
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1080px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 1px solid var(--line);
+  background: rgba(5, 8, 8, 0.96);
+}
+
+.headerInner {
+  width: min(1080px, calc(100% - 40px));
+  height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "State Wide", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.logoPlaceholder {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(25, 216, 202, 0.35);
+  color: var(--accent);
+  font-family: "Poppins", sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+.hero {
+  padding: 105px 0 90px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 800px;
+  margin: 0;
+  font-size: clamp(46px, 7vw, 78px);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.title span {
+  color: var(--muted-2);
+}
+
+.intro {
+  max-width: 610px;
+  margin: 25px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.learning {
+  padding: 80px 0 100px;
+}
+
+.sectionHeading {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 50px;
+  align-items: end;
+  margin-bottom: 45px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 52px);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.sectionDescription {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.weeks {
+  border-top: 1px solid var(--line);
+}
+
+.week {
+  padding: 42px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.weekHeader {
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  gap: 35px;
+  margin-bottom: 28px;
+}
+
+.weekNumber {
+  color: var(--accent);
+  font-family: "Race Sport", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+}
+
+.weekTitle {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: 0.02em;
+}
+
+.weekDescription {
+  max-width: 650px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.days {
+  display: grid;
+  gap: 12px;
+  padding-left: 160px;
+}
+
+.day {
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.dayHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 15px;
+}
+
+.dayNumber {
+  min-width: 54px;
+  color: var(--accent);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.dayHeader h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.resources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.resource {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  background: var(--surface-light);
+  color: var(--muted);
+  font-size: 10px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.resource:hover {
+  border-color: rgba(25, 216, 202, 0.45);
+  color: var(--text);
+}
+
+.arrow {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.addResource {
+  min-height: 52px;
+  border: 1px dashed rgba(25, 216, 202, 0.22);
+  background: transparent;
+  color: var(--muted-2);
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.addResource:hover {
+  color: var(--accent);
+  border-color: rgba(25, 216, 202, 0.5);
+}
+
+.about {
+  padding: 0 0 100px;
+}
+
+.aboutBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 45px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.aboutTitle {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.aboutText {
+  align-self: end;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.footer {
+  padding: 25px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted-2);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .sectionHeading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .weekHeader {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .days {
+    padding-left: 0;
+  }
+
+  .aboutBox {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container,
+  .headerInner {
+    width: min(100% - 28px, 1080px);
+  }
+
+  .headerInner {
+    height: 62px;
+  }
+
+  .nav {
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 75px 0 65px;
+  }
+
+  .title {
+    font-size: 42px;
+  }
+
+  .learning {
+    padding: 60px 0 75px;
+  }
+
+  .resources {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutBox {
+    padding: 28px;
+  }
+
+  .footer .container {
+    flex-direction: column;
+  }
+}
